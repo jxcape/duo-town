@@ -94,6 +94,8 @@ try {
   const cAlone = await c.evaluate(() => document.querySelector('#peer-status').textContent.includes('기다리는 중'))
   const aOnlyB = await a.evaluate(() => document.querySelector('#peer-status').textContent === '연결됨: 비이')
   check('비밀번호가 다른 사람은 15초 기다려도 연결 안 됨', cAlone && aOnlyB)
+  const cNotice = await c.evaluate(() => document.querySelector('#notice').textContent)
+  check('비밀번호가 다른 쪽에 한국어 안내가 뜨거나 조용히 대기', !/password/i.test(cNotice), cNotice || '안내 없음')
   await ctxC.close()
 
   const mediaArrived = sel =>

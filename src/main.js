@@ -81,7 +81,9 @@ function enterTown({creds, name, media}) {
     room: creds.room,
     key: creds.key,
     onJoinError: ({error}) => {
-      $('notice').textContent = `연결 오류: ${error}`
+      $('notice').textContent = /password/i.test(error)
+        ? '비밀번호가 다른 상대가 있어서 연결하지 않았어요.'
+        : `연결 오류: ${error}`
     },
   })
   const {room} = net
