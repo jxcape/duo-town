@@ -1,0 +1,21 @@
+{
+  "name": "duo-town",
+  "version": "0.1.0",
+  "private": true,
+  "description": "둘이 쓰는 게더타운풍 공간: 이동, 음성, 화상, 화면공유 (서버 없이 브라우저끼리 직접 연결)",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test:e2e": "node tests/e2e.mjs"
+  },
+  "dependencies": {
+    "phaser": "4.2.1",
+    "trystero": "0.26.0"
+  },
+  "devDependencies": {
+    "playwright": "^1.64.1",
+    "vite": "^8.3.5"
+  }
+}

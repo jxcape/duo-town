@@ -1,0 +1,6 @@
+node_modules/
+dist/
+.DS_Store
+tests/.artifacts/
+# 에셋 조사 자료(남의 스크린샷 포함)와 세션 문서는 공개 저장소에 올리지 않는다
+.claude/

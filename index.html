@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>duo-town</title>
+    <link rel="stylesheet" href="./src/style.css" />
+  </head>
+  <body>
+    <section id="join" class="join">
+      <div class="join-card">
+        <h1>duo-town</h1>
+        <p class="join-desc">둘이서 돌아다니고, 말하고, 화면을 보여주는 작은 사무실.</p>
+
+        <div id="join-new" hidden>
+          <p>아직 방이 없어요. 방을 만들면 친구에게 보낼 링크가 생겨요.</p>
+          <button id="btn-create" type="button" class="primary">새 방 만들기</button>
+        </div>
+
+        <form id="join-form" hidden>
+          <label for="input-name">내 이름</label>
+          <input id="input-name" name="name" maxlength="16" autocomplete="nickname" required />
+          <button id="btn-join" type="submit" class="primary">입장</button>
+          <p class="join-hint">입장하면 브라우저가 마이크와 카메라 사용을 물어봐요. 거절해도 들어갈 수 있어요.</p>
+        </form>
+
+        <p id="join-status" class="join-status" role="status"></p>
+      </div>
+    </section>
+
+    <section id="app" class="app" hidden>
+      <header class="topbar">
+        <span id="peer-status" class="peer-status" role="status">친구 기다리는 중</span>
+        <span id="notice" class="notice"></span>
+        <button id="btn-invite" type="button">초대 링크 복사</button>
+      </header>
+
+      <main class="stage">
+        <div id="game" class="game"></div>
+        <aside class="side">
+          <div id="screen-box" class="screen-box" hidden>
+            <div class="screen-head">
+              <span id="screen-label">화면공유</span>
+              <button id="btn-screen-full" type="button">크게 보기</button>
+            </div>
+            <video id="screen-video" autoplay playsinline></video>
+          </div>
+          <div id="videos" class="videos"></div>
+        </aside>
+      </main>
+
+      <footer class="controls">
+        <button id="btn-mic" type="button" aria-pressed="true">마이크 켜짐</button>
+        <button id="btn-cam" type="button" aria-pressed="true">카메라 켜짐</button>
+        <button id="btn-screen" type="button" aria-pressed="false">화면공유</button>
+        <label class="toggle"><input id="chk-always" type="checkbox" /> 멀어도 항상 듣기</label>
+        <span class="keys-hint">방향키 또는 WASD로 이동</span>
+      </footer>
+    </section>
+
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>
