@@ -86,6 +86,16 @@ try {
   check('서로 연결되고 이름이 보임', connected, `${((Date.now() - started) / 1000).toFixed(1)}초`)
   if (!connected) throw new Error('연결이 안 돼서 나머지 확인을 건너뜀')
 
+  // 방 이름은 같고 비밀번호만 다른 사람은 들어오지 못해야 한다
+  const ctxC = await browser.newContext({permissions: ['camera', 'microphone']})
+  const c = await ctxC.newPage()
+  await enter(c, roomUrl.replace(/k=\w+/, 'k=wrongpassword0000'), '씨이')
+  await c.waitForTimeout(15000)
+  const cAlone = await c.evaluate(() => document.querySelector('#peer-status').textContent.includes('기다리는 중'))
+  const aOnlyB = await a.evaluate(() => document.querySelector('#peer-status').textContent === '연결됨: 비이')
+  check('비밀번호가 다른 사람은 15초 기다려도 연결 안 됨', cAlone && aOnlyB)
+  await ctxC.close()
+
   const mediaArrived = sel =>
     waitFor(
       b,
