@@ -52,9 +52,10 @@ function drawTileTextures(scene) {
 
 const OBJECT_TEXTURE = {'#': 'wall', D: 'desk', P: 'plant', S: 'sofa', T: 'table'}
 
+// 접속마다 바뀌는 id로 색을 고른다(FNV-1a 해시). 에셋을 고르면 캐릭터 선택으로 바뀐다.
 function colorFromId(id) {
-  let h = 0
-  for (const ch of id) h = (h * 31 + ch.charCodeAt(0)) >>> 0
+  let h = 0x811c9dc5
+  for (const ch of id) h = Math.imul(h ^ ch.charCodeAt(0), 0x01000193) >>> 0
   return Phaser.Display.Color.HSVToRGB((h % 360) / 360, 0.55, 0.85).color
 }
 
